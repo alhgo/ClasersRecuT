@@ -1,0 +1,117 @@
+{
+    "name": "InputController",
+    "maps": [
+        {
+            "name": "RobotMove",
+            "id": "cf02dba4-6669-4b4e-b544-6eb657c45587",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "881d75b5-0369-49ec-8925-4afac701e870",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "ceee1192-b5f2-4ecc-8899-a5bc42194a44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Walk",
+                    "type": "Value",
+                    "id": "5bb813dd-70e8-44cc-a632-ba66b47e4704",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "af08a28b-6e14-4022-8998-5adaa266324a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71eaf41c-a2e1-4fcf-bf50-b895385d1f2b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c926269b-d23b-4bd7-ba8d-1b7d3f5adc2a",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerMove",
+            "id": "1ba47629-5788-449b-b62e-fdb3d818bcd0",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "845b3986-6785-4896-8bba-e156683a62a3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "9f799b02-bd81-4aed-8396-c04d928fe0ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "26f163e5-f9bb-4b55-a4ed-0cdc48e8382a",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26c9a71e-89c2-4d47-a487-e8dcb4f9872a",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

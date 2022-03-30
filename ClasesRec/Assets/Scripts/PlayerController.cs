@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(playerMove);
+        //print(playerMove);
 
         animator.SetFloat("Walk", playerMove.y);
 

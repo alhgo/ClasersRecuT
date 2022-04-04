@@ -19,6 +19,20 @@ public class PlayerMove : MonoBehaviour
     float limitVT = 6f;
     float limitVB = 0.5f;
 
+    //Boolenas que permitirán el movimiento
+    bool movingH;
+
+    //Posición inicial, para el suavizado
+    Vector3 currentPos;
+    Vector3 smoothInputVelocity; //Necesitamos esta variable para el suavizado
+    [SerializeField] float SmoothVelocity = 0.4f; //Cantidad de suavizado en el movimiento
+
+    //Lo mismo para la rotación
+    Vector3 currentRot;
+    Vector3 smoothInputRotVelocity; //Necesitamos esta variable para el suavizado
+    [SerializeField] float RotateVelocity = 0.2f;
+    [SerializeField] float maxAng = 70f; //Máximo ángulo de rotación
+
 
     private void Awake()
     {
@@ -34,6 +48,8 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         speedDefault = 6f;
+
+        currentPos = transform.position;
     }
 
     // Update is called once per frame
@@ -46,8 +62,7 @@ public class PlayerMove : MonoBehaviour
 
     void MoverNave()
     {
-        transform.Translate(Vector3.up * move.y * speedV * Time.deltaTime);
-        transform.Translate(Vector3.right * move.x * speedH * Time.deltaTime);
+        
 
         float posX = transform.position.x;
         float posY = transform.position.y;
@@ -56,11 +71,13 @@ public class PlayerMove : MonoBehaviour
 
         if ((posX > limitX && desplX > 0) || (posX < -limitX && desplX < 0))
         {
-            speedH = 0;
+            speedH = 0f;
+            SmoothVelocity = 0f;
         }
         else
         {
             speedH = speedDefault;
+            SmoothVelocity = 0.2f;
         }
 
 
@@ -73,6 +90,19 @@ public class PlayerMove : MonoBehaviour
         {
             speedV = speedDefault;
         }
+
+        //Movemos la nave, pero vamos a suavizar el vector hacia el que se mueve
+        currentPos = Vector3.SmoothDamp(currentPos, move, ref smoothInputVelocity, SmoothVelocity);
+
+        //El movimiento que sea realitivo a las coordenadas del mundo, para poder rotar la nave
+        transform.Translate(Vector3.up * currentPos.y * speedV * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.right * currentPos.x * speedH * Time.deltaTime, Space.World);
+
+        //Vamos a girar pero también suavizado
+        Vector3 vectorRot = new Vector3(move.y * -45f, 0, -maxAng * move.x);
+        currentRot = Vector3.SmoothDamp(currentRot, vectorRot, ref smoothInputRotVelocity, RotateVelocity);
+
+        transform.eulerAngles = currentRot;
     }
 
 
